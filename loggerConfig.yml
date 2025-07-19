@@ -1,0 +1,26 @@
+# base[config] dict used to initialize logging using logging.config.dictConfig.
+# don't change logger or handler names.
+version: 1
+disable_existing_loggers: false # disable any existing non-root loggers
+formatters:
+  simple:
+    format: '%(asctime)s %(levelname)-8s - %(message)s'
+    datefmt: '%F %T'
+  detailed:
+    format: '%(asctime)s %(levelname)-8s - %(filename)s %(funcName)s %(lineno)-3d: %(message)s'
+    datefmt: '%F %T'
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: detailed
+    level: DEBUG
+    stream: ext://sys.stdout
+  file:
+    class: logging.FileHandler
+    filename: file.log
+    formatter: detailed
+    level: DEBUG
+loggers: []
+root:
+  handlers: [file]
+  level: DEBUG
